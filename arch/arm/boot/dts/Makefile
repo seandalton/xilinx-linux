@@ -498,6 +498,7 @@ dtb-$(CONFIG_ARCH_ZYNQ) += \
 	zynq-zc770-xm013.dtb \
 	zynq-mars-zx3.dtb \
 	zynq-mercury-zx1.dtb \
+	zynq-mercury-zx5.dtb \
 	zynq-zed.dtb
 dtb-$(CONFIG_MACH_ARMADA_370) += \
 	armada-370-db.dtb \
