@@ -108,7 +108,8 @@ config COMMON_CLK_SCPI
 
 config COMMON_CLK_SI5338
 	tristate "Clock driver for SiLabs 5338"
-	depends on I2C+	select REGMAP_I2C
+	depends on I2C
+	select REGMAP_I2C
 	select RATIONAL
 	help
 	  This driver supports Silicon Labs 5338 programmable clock generators,
