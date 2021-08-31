@@ -110,7 +110,7 @@ config COMMON_CLK_SI5338
 	tristate "Clock driver for SiLabs 5338"
 	depends on I2C+	select REGMAP_I2C
 	select RATIONAL
-	---help---
+	help
 	  This driver supports Silicon Labs 5338 programmable clock generators,
 	  using common clock framework. It needs parent clock as input(s).
 	  Internal clocks are registered with unique names in case multiple
