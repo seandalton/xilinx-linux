@@ -79,4 +79,10 @@
 			/* enabled = "okay"; */
 		};
 	};
+	
+	lm96080@2f {
+		status = "okay";
+		compatible = "lm80";
+		reg = <0x2f >;
+	};
 };
