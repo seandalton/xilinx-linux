@@ -45,8 +45,6 @@
 		};
 
 		i2c_mux@1 {
-			#address-cells = <1>;
-			#size-cells = <0>;
 			reg = <1>;
 
 			i2c_mux@75 {
