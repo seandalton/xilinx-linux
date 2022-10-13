@@ -1,0 +1,113 @@
+// SPDX-License-Identifier: GPL-2.0+
+/*
+ * dts file for Xilinx ZynqMP mercury_xu5 with used CAN1
+ *
+ * (C) Copyright 2015 - 2021
+ *
+ * Sean Dalton <sean.dalton@smartmechatronics.de>
+ */
+
+/*Untested*/
+#include "zynqmp.dtsi"
+#include "zynqmp-clk-ccf.dtsi"
+#include <dt-bindings/input/input.h>
+#include <dt-bindings/gpio/gpio.h>
+#include <dt-bindings/pinctrl/pinctrl-zynqmp.h>
+#include <dt-bindings/phy/phy.h>
+
+
+/ {
+	aliases {
+		ethernet0 = &gem0;
+		ethernet1 = &gem1;
+		i2c0 = &i2c0;
+		serial0 = &uart0;
+		spi0 = &qspi;
+    can1 = &can1;
+	};
+};
+
+&can1 {
+	status = "okay";
+	pinctrl-names = "default";
+	pinctrl-0 = <&pinctrl_can1_default>;
+};
+
+&pinctrl0 {
+	status = "okay";
+  
+	pinctrl_can1_default: can1-default {
+		mux {
+			function = "can1";
+			groups = "can1_6_grp";
+		};
+
+		conf {
+			groups = "can1_6_grp";
+			slew-rate = <SLEW_RATE_SLOW>;
+			power-source = <IO_STANDARD_LVCMOS18>;
+		};
+
+		conf-rx {
+			pins = "MIO41";
+			bias-high-impedance;
+		};
+
+		conf-tx {
+			pins = "MIO42";
+			bias-disable;
+		};
+	}; 
+};
+  
+&gem0 {
+	status = "okay";
+	/delete-property/ local-mac-address;
+	phy-mode = "rgmii-id";
+	phy-handle = <&phy0>;
+	phy0: phy@3 {
+		reg = <3>;
+
+		txc-skew-ps = <1800>;
+		txen-skew-ps = <420>;
+
+		txd0-skew-ps = <420>;
+		txd1-skew-ps = <420>;
+		txd2-skew-ps = <420>;
+		txd3-skew-ps = <420>;
+
+		rxc-skew-ps = <900>;
+		rxdv-skew-ps = <420>;
+
+		rxd0-skew-ps = <420>;
+		rxd1-skew-ps = <420>;
+		rxd2-skew-ps = <420>;
+		rxd3-skew-ps = <420>;		
+	};
+};
+
+&gem1 {
+	status = "okay";
+	/delete-property/ local-mac-address;
+	phy-mode = "gmii-id";
+	phy-handle = <&phy1>;
+    	phy1: phy@3 {
+		reg = <3>;
+
+		txc-skew-ps = <900>;
+		txen-skew-ps = <420>;
+
+		txd0-skew-ps = <420>;
+		txd1-skew-ps = <420>;
+		txd2-skew-ps = <420>;
+		txd3-skew-ps = <420>;
+
+		rxc-skew-ps = <1680>;
+		rxdv-skew-ps = <420>;
+
+		rxd0-skew-ps = <420>;
+		rxd1-skew-ps = <420>;
+		rxd2-skew-ps = <420>;
+		rxd3-skew-ps = <420>;		
+	};
+};
