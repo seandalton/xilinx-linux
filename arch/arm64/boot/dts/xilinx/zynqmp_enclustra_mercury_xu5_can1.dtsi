@@ -54,7 +54,7 @@
 		};
 
 		conf-tx {
-			pins = "MIO42";
+			pins = "MIO40";
 			bias-disable;
 		};
 	}; 
